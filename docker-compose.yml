@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  webserver:
+    container_name: php7
+    build:
+      context: .
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
