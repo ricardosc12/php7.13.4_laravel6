@@ -11,3 +11,6 @@ An effective solution is to use it within WSL, that is, the files/repository wit
 #### docker compose up -d
 
 
+https://stackoverflow.com/questions/78156282/how-to-optimize-php-7-3-14-laravel-6/78156562#78156562
+
+https://learn.microsoft.com/en-us/windows/wsl/filesystems#file-storage-and-performance-across-file-systems
