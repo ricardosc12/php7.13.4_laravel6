@@ -21,8 +21,14 @@ WORKDIR /var/www/html
 # Instala o Composer globalmente
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+COPY src/. /var/www/html
+
+RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader
+
+RUN mv /var/www/html/vendor /tmp_vendor_not_use
+
 # Instala a versão específica do Laravel (6.x)
-RUN composer create-project --prefer-dist laravel/laravel:^6.0 .
+# RUN composer create-project --prefer-dist laravel/laravel:^6.0 .
 
 # Define as permissões necessárias
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
@@ -31,4 +37,4 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 EXPOSE 80
 
 # Comando para iniciar o Apache quando o contêiner for executado
-CMD ["apache2-foreground"]
+CMD cp -a /tmp_vendor_not_use /var/www/html/vendor && apache2-foreground && composer dump-autoload

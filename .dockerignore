@@ -1,0 +1,9 @@
+**/vendor/
+**/node_modules/
+**/storage/logs/
+**/storage/app/public/uploads/
+
+**/.dockerignore
+**/.docker
+**/docker-compose.yml
+**/Dockerfile
