@@ -36,5 +36,10 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 # Exponha a porta 80
 EXPOSE 80
 
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Comando para iniciar o Apache quando o contêiner for executado
-CMD cp -a /tmp_vendor_not_use /var/www/html/vendor && apache2-foreground && composer dump-autoload
+# CMD cp -a /tmp_vendor_not_use /var/www/html/vendor
+
+ENTRYPOINT ["docker-entrypoint.sh"]
